@@ -1,0 +1,7 @@
+<% @customer_feedbacks.each do | customer_feedback | %>
+  <%= customer_feedback.first_name %>
+  <%= customer_feedback.last_name %>
+  <%= customer_feedback.subject %>
+  <%= customer_feedback.description %>
+  <%= customer_feedback.email_address %>
+<% end %>
