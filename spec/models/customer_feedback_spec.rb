@@ -7,8 +7,8 @@ describe CustomerFeedback do
   it { should have_valid(:last_name).when('Steph','Tim')}
   it { should_not have_valid(:last_name).when(nil,'')}
 
-  it { should have_valid(:email_address).when('Steph@gmail.com')}
-  it { should_not have_valid(:email_address).when(nil,'')}
+  it { should have_valid(:email_address).when('Steph@gmail.com', 'steph+2@email.com')}
+  it { should_not have_valid(:email_address).when(nil,'', 'steph')}
 
   it { should have_valid(:description).when('some test','foo')}
   it { should_not have_valid(:description).when(nil,'')}
