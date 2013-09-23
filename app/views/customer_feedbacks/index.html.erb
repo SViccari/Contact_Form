@@ -1,7 +1,25 @@
-<% @customer_feedbacks.each do | customer_feedback | %>
-  <%= customer_feedback.first_name %>
-  <%= customer_feedback.last_name %>
-  <%= customer_feedback.subject %>
-  <%= customer_feedback.description %>
-  <%= customer_feedback.email_address %>
-<% end %>
+<h1>Customer Feedback and Inquiries</h1>
+
+<table>
+  <thead>
+    <strong>Messages</strong>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_feedbacks.each do |feedback| %>
+      <tr>
+        <td><%= feedback.subject %></td>
+        <td><%= link_to 'Show', feedback %></td>
+        <td><%= link_to 'Edit', edit_customer_feedback_path(feedback) %></td>
+        <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
