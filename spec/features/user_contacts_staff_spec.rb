@@ -13,13 +13,20 @@ feature "user contacts DogHub", %Q{
   # * I must specify a subject
   # * I must specify a description
 
-  scenario 'specifies valid information, contacts DogHub' do 
-    visit '/'
+  scenario 'specifies valid information, sends feedback to DogHub' do
+    visit '/customer_feedbacks/new'
     fill_in "First name", with: 'Steph'
     fill_in "Last name", with: 'Viccari'
     fill_in "Email", with: 'steph@gmail.com'
     fill_in 'Subject', with: 'Hola'
-    fill_in 'description', with: 'You Rock'
-    expect(page).to have_content('You\'re email was successfully sent')
+    fill_in 'Description', with: 'You Rock'
+    click_button 'Create Customer feedback'
+    expect(page).to have_content('Your message was successfully sent')
+  end
+
+  scenario "attempts to send feedback without a first name" do 
+    visit '/customer_feedbacks/new'
+    click_button 'Create Customer feedback'
+    expect(page).to have_content "First name can't be blank"
   end
 end

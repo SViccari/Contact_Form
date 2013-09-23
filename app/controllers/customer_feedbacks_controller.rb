@@ -15,9 +15,9 @@ class CustomerFeedbacksController < ApplicationController
   def create
     @customer_feedback = CustomerFeedback.new(reg_params)
     if @customer_feedback.save
-      redirect_to @customer_feedback, notice: 'You\'re message was successfully sent'
+      redirect_to @customer_feedback, notice: 'Your message was successfully sent'
     else
-      render action: 'new'
+      render :new
     end
   end
 
@@ -26,7 +26,7 @@ class CustomerFeedbacksController < ApplicationController
     params.require(:customer_feedback).permit(
       :first_name,
       :last_name,
-      :email,
+      :email_address,
       :subject,
       :description)
   end
