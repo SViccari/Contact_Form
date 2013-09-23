@@ -15,8 +15,8 @@ feature "Admin views all inquiries", %Q{
   end
 
   scenario "admin views all contact inquiries listed on a page" do
-      message1 = FactoryGirl.create_list(:customer_feedback, 4)
+      messages = FactoryGirl.create_list(:customer_feedback, 4)
       visit '/customer_feedbacks'
-      expect(page).to have_content message1[0].subject
+      expect(page).to have_content messages[0].subject
   end
 end

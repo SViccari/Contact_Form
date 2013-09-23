@@ -14,9 +14,11 @@
     <% @customer_feedbacks.each do |feedback| %>
       <tr>
         <td><%= feedback.subject %></td>
-        <td><%= link_to 'Show', feedback %></td>
+        <td><%= link_to 'Show', customer_feedback_path(feedback) %></td>
         <td><%= link_to 'Edit', edit_customer_feedback_path(feedback) %></td>
-        <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', customer_feedback_path(feedback), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--         delete is HTTP verb used to hit the Rails destroy action
+        destroy is the Rails action -->
       </tr>
     <% end %>
   </tbody>

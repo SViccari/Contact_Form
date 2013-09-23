@@ -1,5 +1,5 @@
 class CustomerFeedbacksController < ApplicationController
-  before_action :send_message, only: [:show, :edit, :update, :destroy]
+  # before_action :get_customer_feedback_record, only: [:show, :edit, :update, :destroy]
   
    def index
     @customer_feedbacks = CustomerFeedback.all
@@ -10,6 +10,7 @@ class CustomerFeedbacksController < ApplicationController
   end
 
   def show
+    @customer_feedback = CustomerFeedback.find(params[:id])
   end
 
   def create
@@ -18,6 +19,15 @@ class CustomerFeedbacksController < ApplicationController
       redirect_to @customer_feedback, notice: 'Your message was successfully sent'
     else
       render :new
+    end
+  end
+
+  def destroy
+    @customer_feedback = CustomerFeedback.find(params[:id])
+    @customer_feedback.destroy
+    respond_to do |format|
+      format.html { redirect_to customer_feedbacks_path }
+      format.json { head :no_content}
     end
   end
 
@@ -31,7 +41,7 @@ class CustomerFeedbacksController < ApplicationController
       :description)
   end
 
-  def send_message
-    @customer_feedback = CustomerFeedback.find(params[:id])
-  end
+  # def send_message
+    # @customer_feedback = CustomerFeedback.find(params[:id])
+  # end
 end
